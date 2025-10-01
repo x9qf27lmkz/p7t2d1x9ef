@@ -26,8 +26,9 @@
   <header>
     <input id="addr" placeholder="주소 입력 (예: 서울 노원구 중계로 123)" />
     <button id="find">찾기</button>
-    <button id="sale" disabled>최근 3개월 매매</button>
+    <button id="sale" disabled>최근 3개월 매매</button><button id="locate">현재 위치</button>     <!-- 추가 -->
     <span class="pill">LAWD: <b id="lawd">-</b></span>
+    <button id="copy" style="margin-left:6px;">복사</button>  <!-- 추가 -->
   </header>
 
   <div id="map"></div>
@@ -148,6 +149,69 @@
     window.addEventListener('load', () => {
       $addr.value = '서울 노원구 중계로 123';
     });
+
+        // 좌표 -> LAWD (백엔드 /geo/lawd 사용)
+  async function lawdByCoord(x, y) {
+    const res = await fetch(`${API_BASE}/geo/lawd?` + new URLSearchParams({ x, y }));
+    if (!res.ok) throw new Error("LAWD API 실패");
+    const j = await res.json();
+    return j?.data?.lawd_cd ?? null;
+  }
+
+  // 현재 위치 버튼
+  async function onLocate() {
+    if (!navigator.geolocation) {
+      alert("이 브라우저는 위치 기능을 지원하지 않습니다."); return;
+    }
+    $list.innerHTML = ""; // 목록 초기화
+    $lawd.textContent = "-";
+    $sale.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      const y = pos.coords.latitude;   // 위도
+      const x = pos.coords.longitude;  // 경도
+
+      try {
+        const lawd = await lawdByCoord(x, y);
+        last = { x, y, lawd, address_name: "현재 위치" };
+        setLawd(lawd);
+
+        const p = new kakao.maps.LatLng(y, x);
+        map.setCenter(p); map.setLevel(5); marker.setPosition(p);
+        iw.setContent(`
+          <div style="padding:8px 10px">
+            <div style="font-weight:600;margin-bottom:4px;">현재 위치</div>
+            <div style="font-size:12px;color:#666">x: ${x.toFixed(6)}, y: ${y.toFixed(6)}<br/>LAWD: <b>${lawd ?? "-"}</b></div>
+          </div>
+        `);
+        iw.open(map, marker);
+      } catch (e) {
+        console.error(e);
+        alert("현재 위치 처리 실패: " + e.message);
+      }
+    }, (err) => {
+      alert("위치 권한을 허용해 주세요. (" + err.message + ")");
+    }, { enableHighAccuracy: true, timeout: 8000 });
+  }
+
+  // LAWD 복사
+  async function onCopy() {
+    if (!last.lawd) { alert("복사할 LAWD가 없습니다."); return; }
+    try {
+      await navigator.clipboard.writeText(last.lawd);
+      alert("복사됨: " + last.lawd);
+    } catch {
+      // https/권한 이슈 등으로 실패 시 폴백
+      const t = document.createElement("textarea");
+      t.value = last.lawd; document.body.appendChild(t);
+      t.select(); document.execCommand("copy"); document.body.removeChild(t);
+      alert("복사됨: " + last.lawd);
+    }
+  }
+
+  // 이벤트 연결
+  document.getElementById('locate').addEventListener('click', onLocate);
+  document.getElementById('copy').addEventListener('click', onCopy);
   </script>
 </body>
 </html>
