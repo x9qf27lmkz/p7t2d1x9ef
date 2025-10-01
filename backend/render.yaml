@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: homesweethome-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    envVars:
+      - key: DATABASE_URL
+        value: "your_database_url_here"
+    deployCommand: "python app/seed.py"  # 배포 후 자동으로 seed.py 실행

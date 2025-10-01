@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>노원구 아파트 지도</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✅ autoload=true로 설정하여 SDK가 로딩되자마자 kakao 객체 바로 사용 가능 -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=353458a2f37daf0f398f019c4c9acdab&libraries=services"></script>
+
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    // ⚠️ SDK가 로딩되자마자 실행되므로 kakao 객체가 정의되어 있음
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+      center: new kakao.maps.LatLng(37.654256, 127.056426),
+      level: 5
+    };
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    function createMarker(x, y, title) {
+      const markerPosition = new kakao.maps.LatLng(y, x);
+      const marker = new kakao.maps.Marker({
+        position: markerPosition,
+        map: map,
+        title: title
+      });
+
+      const infowindow = new kakao.maps.InfoWindow({
+        content: `<div style="padding:5px;font-size:13px;">${title}</div>`
+      });
+
+      kakao.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+      });
+    }
+
+    fetch('http://127.0.0.1:8000/apartments/')
+      .then(response => response.json())
+      .then(apartments => {
+        apartments.forEach(apt => {
+          if (apt.x && apt.y) {
+            createMarker(apt.x, apt.y, apt.apt_name);
+          }
+        });
+      })
+      .catch(err => {
+        console.error("아파트 데이터를 불러오는 데 실패했습니다.", err);
+      });
+  </script>
+</body>
+</html>

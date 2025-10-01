@@ -1,0 +1,22 @@
+homesweethome/
+├── app/
+│   ├── db/
+│   │   └── database.py       # DB 연결 및 세션 관리
+│   ├── models/
+│   │   ├── apartment.py      # 아파트 단지 모델
+│   │   ├── household_status.py # 세대 상태 모델
+│   │   ├── sale_record.py    # 매매 이력 모델
+│   │   └── rental_contract.py # 임대차 이력 모델
+│   ├── routers/
+│   │   ├── apartment.py      # 아파트 관련 API
+│   │   ├── health.py         # 헬스 체크 API
+│   │   └── data_update.py    # 데이터 업데이트 API (리셋 및 삽입)
+│   ├── services/
+│   │   ├── apartment_service.py  # 아파트 관련 비즈니스 로직
+│   │   ├── data_service.py       # 데이터 삽입 및 갱신 로직
+│   └── main.py               # FastAPI 앱 설정 및 라우터 연결
+├── alembic/
+│   └── versions/             # 마이그레이션 파일
+├── alembic.ini               # Alembic 설정 파일
+├── requirements.txt          # 프로젝트 의존성
+└── render.yaml               # Render 배포 설정
