@@ -1,12 +1,10 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-from typing import List
-from pydantic import BaseModel
-from app.db.database import get_db
-from app.models.apartment import Apartment as ApartmentModel
 
-app = FastAPI()
+# 라우터 임포트 (우리가 만든 /geo)
+from app.routers import geo
+
+app = FastAPI(title="HomeSweetHome Public Viewer API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,19 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Pydantic 모델
-class Apartment(BaseModel):
-    id: int
-    apt_name: str
-    x: float
-    y: float
+# 라우터 등록
+app.include_router(geo.router)
 
-    class Config:
-        orm_mode = True
-
-# ✅ DB에서 아파트 목록 조회
-@app.get("/apartments/", response_model=List[Apartment])
-def get_apartments(db: Session = Depends(get_db)):
-    return db.query(ApartmentModel).filter(
-        ApartmentModel.x.isnot(None), ApartmentModel.y.isnot(None)
-    ).all()
+# 헬스체크
+@app.get("/health")
+def health():
+    return {"ok": True}
