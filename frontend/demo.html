@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>홈, 스위트홈 – 데모</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root { --border:#eaeaea; --muted:#666; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    header { display:flex; gap:8px; padding:12px; border-bottom:1px solid var(--border); align-items:center; }
+    input { flex:1; padding:10px 12px; border:1px solid #ccc; border-radius:12px; }
+    button { padding:10px 14px; border:0; border-radius:12px; background:#111; color:#fff; cursor:pointer; }
+    button[disabled] { opacity:.5; cursor:not-allowed; }
+    .pill { font-size:12px; color:var(--muted); margin-left:6px; }
+    #map { width:100%; height:55vh; }
+    #list { padding:12px; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { padding:8px; border-bottom:1px solid var(--border); text-align:left; font-size:14px; }
+    .note { margin-top:6px; font-size:12px; color:#b00; }
+  </style>
+  <!-- Kakao Maps JS SDK (services 라이브러리 포함) -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=353458a2f37daf0f398f019c4c9acdab&libraries=services"></script>
+</head>
+<body>
+  <header>
+    <input id="addr" placeholder="주소 입력 (예: 서울 노원구 중계로 123)" />
+    <button id="find">찾기</button>
+    <button id="sale" disabled>최근 3개월 매매</button>
+    <span class="pill">LAWD: <b id="lawd">-</b></span>
+  </header>
+
+  <div id="map"></div>
+  <div id="list"></div>
+
+  <script>
+    // ===== 설정 =====
+    const API_BASE = "http://127.0.0.1:8000"; // FastAPI
+    // =================
+
+    // 지도 기본 세팅(서울 시청)
+    const map = new kakao.maps.Map(document.getElementById('map'), {
+      center: new kakao.maps.LatLng(37.5665, 126.9780),
+      level: 6
+    });
+    const geocoder = new kakao.maps.services.Geocoder();
+    const marker = new kakao.maps.Marker({ map });
+    const iw = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+    const $addr = document.getElementById('addr');
+    const $find = document.getElementById('find');
+    const $sale = document.getElementById('sale');
+    const $lawd = document.getElementById('lawd');
+    const $list = document.getElementById('list');
+
+    let last = { x:null, y:null, lawd:null, address_name:null };
+
+    async function api(path, params) {
+      const url = `${API_BASE}${path}${params ? ("?" + new URLSearchParams(params)) : ""}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`API ${path} 실패: ` + res.status);
+      return res.json();
+    }
+
+    async function addressToLawd(q) {
+      return api('/geo/address-to-lawd', { q });
+    }
+
+    async function saleRecent(lawd, months=3) {
+      return api('/deals/sale/recent', { lawd, months });
+    }
+
+    function setLawd(code) {
+      $lawd.textContent = code ?? "-";
+      $sale.disabled = !code;
+    }
+
+    function renderSales(result) {
+      const rows = result.data || [];
+      if (!rows.length) {
+        $list.innerHTML = `<div style="color:#888">표시할 매매 데이터가 없습니다.</div>` +
+          (result.note ? `<div class="note">${result.note}</div>` : "");
+        return;
+      }
+      const html = `
+        <table>
+          <thead>
+            <tr><th>일자</th><th>아파트</th><th>면적(㎡)</th><th>층</th><th>가격(만원)</th></tr>
+          </thead>
+          <tbody>
+            ${rows.slice(0, 80).map(r => `
+              <tr>
+                <td>${r.deal_date}</td>
+                <td>${r.apt ?? "-"}</td>
+                <td>${r.area_m2 ?? "-"}</td>
+                <td>${r.floor ?? "-"}</td>
+                <td>${(r.price/10000).toFixed(1)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+        ${result.note ? `<div class="note">${result.note}</div>` : ""}
+      `;
+      $list.innerHTML = html;
+    }
+
+    async function onFind() {
+      const q = $addr.value.trim();
+      if (!q) return;
+      try {
+        const j = await addressToLawd(q);
+        last = { x: j.x, y: j.y, lawd: j.lawd_cd, address_name: j.address_name };
+        setLawd(j.lawd_cd);
+
+        const pos = new kakao.maps.LatLng(j.y, j.x);
+        map.setCenter(pos); map.setLevel(5); marker.setPosition(pos);
+        iw.setContent(`
+          <div style="padding:8px 10px">
+            <div style="font-weight:600;margin-bottom:4px;">${j.address_name}</div>
+            <div style="font-size:12px;color:#666">x: ${j.x.toFixed(6)}, y: ${j.y.toFixed(6)}<br/>LAWD: <b>${j.lawd_cd}</b></div>
+          </div>
+        `);
+        iw.open(map, marker);
+        $list.innerHTML = ""; // 결과 초기화
+      } catch (e) {
+        console.error(e);
+        alert("주소 조회 실패: " + e.message);
+      }
+    }
+
+    async function onSale() {
+      if (!last.lawd) { alert("먼저 주소를 조회하세요."); return; }
+      try {
+        $list.innerHTML = `<div style="color:#666">불러오는 중...</div>`;
+        const r = await saleRecent(last.lawd, 3);
+        renderSales(r);
+      } catch (e) {
+        console.error(e);
+        alert("매매 조회 실패: " + e.message);
+      }
+    }
+
+    $find.addEventListener('click', onFind);
+    $sale.addEventListener('click', onSale);
+    $addr.addEventListener('keydown', e => { if (e.key === 'Enter') onFind(); });
+
+    // 편의: 첫 로드 예시 주소
+    window.addEventListener('load', () => {
+      $addr.value = '서울 노원구 중계로 123';
+    });
+  </script>
+</body>
+</html>

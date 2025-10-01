@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import geo
 
 app = FastAPI(title="HomeSweetHome Public Viewer API")
+from app.routers import geo, deals
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,6 +17,7 @@ app.add_middleware(
 
 # 라우터 등록
 app.include_router(geo.router)
+app.include_router(deals.router)
 
 # 헬스체크
 @app.get("/health")
