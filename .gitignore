@@ -35,3 +35,20 @@ frontend/.env*
 backend/node_modules/
 frontend/.turbo/
 frontend/.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Local artifacts
+*.db
+*.sqlite
+.DS_Store
