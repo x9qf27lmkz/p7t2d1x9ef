@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import os
 from decimal import Decimal, InvalidOperation
 from typing import Sequence
 
@@ -10,11 +11,17 @@ from sqlalchemy.orm import Session
 
 from app.db.database import SessionLocal
 from app.models.sale import Sale
-from app.utils.normalize import normalize_lot, normalize_text, parse_yyyymmdd, stable_bigint_id
-from app.utils.seoul_api import iter_rows
+from app.utils.normalize import (
+    clean_lot_jibun,
+    mwon_to_krw,
+    norm_text,
+    stable_bigint_id,
+    yyyymmdd_to_date,
+)
+from app.utils.seoul_api import fetch_pages, probe_service
 
 LOGGER = logging.getLogger(__name__)
-SERVICE_NAME = "tbLnOpendataRtmsV"
+SERVICE_CANDIDATES = ("tbLnOpendataRtmsV", "RealEstateSales", "tbLnOpendataRltm")
 
 
 def _to_decimal(value: object) -> Decimal | None:
@@ -34,32 +41,34 @@ def _lot_from(row: dict) -> str | None:
     lot = str(main)
     if sub not in (None, "", "0"):
         lot = f"{lot}-{sub}"
-    return normalize_lot(lot)
+    return clean_lot_jibun(lot)
+
+
+def _coords(row: dict) -> tuple[Decimal | None, Decimal | None]:
+    lat = _to_decimal(row.get("LAT") or row.get("Y") or row.get("WGS84_Y"))
+    lng = _to_decimal(row.get("LNG") or row.get("X") or row.get("WGS84_X"))
+    return lat, lng
 
 
 def _transform_row(row: dict) -> dict:
-    contract_date = parse_yyyymmdd(row.get("CTRT_YMD") or row.get("CTRT_DAY"))
+    raw = dict(row)
+    contract_date = yyyymmdd_to_date(row.get("CTRT_YMD") or row.get("CTRT_DAY"))
     area = _to_decimal(row.get("ARCH_AREA") or row.get("RENT_AREA"))
-    price_raw = row.get("THING_AMT") or row.get("SUM_AMT")
-    price = None
-    if price_raw not in (None, ""):
-        try:
-            price = int(Decimal(str(price_raw)) * Decimal("10000"))
-        except (InvalidOperation, TypeError, ValueError):
-            price = None
+    price = mwon_to_krw(row.get("THING_AMT") or row.get("SUM_AMT"))
+    lat, lng = _coords(row)
 
     return {
-        "id": stable_bigint_id(row),
-        "raw": row,
+        "id": stable_bigint_id(raw),
+        "raw": raw,
         "contract_date": contract_date,
         "price_krw": price,
         "area_m2": area,
-        "gu_key": normalize_text(row.get("CGG_NM") or row.get("SGG_NM")),
-        "dong_key": normalize_text(row.get("STDG_NM") or row.get("EMD_ADDR")),
-        "name_key": normalize_text(row.get("BLDG_NM") or row.get("APT_NM")),
+        "gu_key": norm_text(row.get("CGG_NM") or row.get("SGG_NM")),
+        "dong_key": norm_text(row.get("STDG_NM") or row.get("EMD_ADDR")),
+        "name_key": norm_text(row.get("BLDG_NM") or row.get("APT_NM")),
         "lot_key": _lot_from(row),
-        "lat": _to_decimal(row.get("LAT") or row.get("Y")),
-        "lng": _to_decimal(row.get("LNG") or row.get("X")),
+        "lat": lat,
+        "lng": lng,
     }
 
 
@@ -78,12 +87,18 @@ def _upsert_rows(session: Session, rows: Sequence[dict]) -> None:
         session.execute(stmt)
 
 
-def run(service_name: str = SERVICE_NAME) -> None:
+def run(service_name: str | None = None, *, api_key: str | None = None) -> None:
     """Fetch the sale dataset and upsert it into the database."""
+
+    key = api_key or os.getenv("SEOUL_API_KEY")
+    if not key:
+        raise RuntimeError("SEOUL_API_KEY not set")
+
+    service = service_name or probe_service(key, SERVICE_CANDIDATES)
 
     with SessionLocal() as session:
         batch_count = 0
-        for batch in iter_rows(service_name):
+        for batch in fetch_pages(key, service):
             _upsert_rows(session, batch)
             session.commit()
             batch_count += 1
