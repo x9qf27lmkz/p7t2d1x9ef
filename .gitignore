@@ -21,3 +21,5 @@ frontend/.expo/
 frontend/dist/
 frontend/build/
 frontend/.env*
+
+backend/node_modules/
