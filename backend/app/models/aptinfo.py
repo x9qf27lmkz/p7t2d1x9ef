@@ -1,7 +1,7 @@
 """SQLAlchemy model for core apartment metadata."""
 from __future__ import annotations
 
-from sqlalchemy import BigInteger, Column, Date, DateTime, Numeric, Text
+from sqlalchemy import BigInteger, Column, Date, DateTime, Integer, Numeric, Text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql import func
 
@@ -16,6 +16,7 @@ class AptInfo(Base):
     id = Column(BigInteger, primary_key=True)
     raw = Column(JSONB, nullable=False)
     approval_date = Column(Date, nullable=True)
+    year_approved = Column(Integer, nullable=True)
     gu_key = Column(Text, nullable=True, index=True)
     dong_key = Column(Text, nullable=True, index=True)
     name_key = Column(Text, nullable=True, index=True)
