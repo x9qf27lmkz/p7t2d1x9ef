@@ -7,3 +7,6 @@ SQLAlchemy
 alembic
 python-multipart
 orjson
+asyncpg
+pydantic-settings
+python-dotenvasyncpg==0.30.0

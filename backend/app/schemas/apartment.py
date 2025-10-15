@@ -14,5 +14,12 @@ class ApartmentSchema(BaseModel):
     x: Optional[float]
     y: Optional[float]
 
+    # ✅ 아래 필드들 추가해야 함
+    gu: Optional[str]
+    dong: Optional[str]
+    year_approved: Optional[int]
+    lat: Optional[float]
+    lng: Optional[float]
+
     class Config:
         orm_mode = True
