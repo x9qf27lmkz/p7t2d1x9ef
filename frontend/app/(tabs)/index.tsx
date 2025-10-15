@@ -1,7 +1,7 @@
 // app/(tabs)/index.tsx
 import { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
-import api from "../../src/services/api";
+import { Text, ScrollView } from "react-native";
+import api from "@/services/api";
 
 export default function Home() {
   const [msg, setMsg] = useState("loading...");

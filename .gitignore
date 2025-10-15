@@ -1,6 +1,12 @@
 # root
 *.log
 .env
+.env.*
+.DS_Store
+Thumbs.db
+*.py[cod]
+*.sqlite*
+*.db
 /.venv/
 .vscode/
 .idea/
@@ -13,11 +19,17 @@ backend/.venv/
 backend/.env*
 backend/__pycache__/
 backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.coverage
 backend/app/db/*.db
 
 # frontend
 frontend/node_modules/
 frontend/.expo/
+frontend/.expo-shared/
 frontend/dist/
 frontend/build/
+frontend/web-build/
 frontend/.env*
+frontend/.turbo/
+frontend/.cache/
