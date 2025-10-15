@@ -2,3 +2,11 @@ __pycache__/
 alembic/__pycache__/
 app/models/__pycache__/
 # .env
+
+node_modules/
+__pycache__/
+*.py[cod]
+.env
+backend/app/data/*.csv
+*.db
+
