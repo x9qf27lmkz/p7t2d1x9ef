@@ -1,0 +1,2656 @@
+                            jsonb_pretty                            
+--------------------------------------------------------------------
+ {                                                                 +
+     "rent": [                                                     +
+         {                                                         +
+             "name": "id",                                         +
+             "default": "nextval('rent_id_seq'::regclass)",        +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rcpt_yr",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "cgg_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "cgg_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "stdg_cd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "stdg_nm",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lotno_se",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lotno_se_nm",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 8,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mno",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 9,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sno",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 10,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "flr",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 11,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "ctrt_day",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 12,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent_se",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 13,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent_area",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 14,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "grfe_mwon",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 15,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rtfe_mwon",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 16,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bldg_nm",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 17,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "arch_yr",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 18,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bldg_usg",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 19,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "ctrt_prd",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 20,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "new_updt_yn",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 21,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "ctrt_updt_use_yn",                           +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 22,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "bfr_grfe_mwon",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 23,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bfr_rtfe_mwon",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 24,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "contract_date",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 25,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "area_m2",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 26,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "deposit_krw",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 27,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_krw",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 28,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lot_key",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 29,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gu_key",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 30,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dong_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 31,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 32,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lat",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 33,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lng",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 34,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "raw",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 35,                                       +
+             "data_type": "jsonb",                                 +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "created_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 36,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "updated_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 37,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "sale": [                                                     +
+         {                                                         +
+             "name": "id",                                         +
+             "default": "nextval('sale_id_seq'::regclass)",        +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "raw",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 2,                                        +
+             "data_type": "jsonb",                                 +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rcpt_yr",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "cgg_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "cgg_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "stdg_cd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "stdg_nm",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lotno_se",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 8,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lotno_se_nm",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 9,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mno",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 10,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sno",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 11,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "bldg_nm",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 12,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "ctrt_day",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 13,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "thing_amt",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 14,                                       +
+             "data_type": "bigint",                                +
+             "num_scale": 0,                                       +
+             "num_precision": 64                                   +
+         },                                                        +
+         {                                                         +
+             "name": "arch_area",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 15,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 3,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "land_area",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 16,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 3,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "flr",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 17,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rght_se",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 18,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rtrcn_day",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 19,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "arch_yr",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 20,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bldg_usg",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 21,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dclr_se",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 22,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "opbiz_restagnt_sgg_nm",                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 23,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lat",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 24,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lng",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 25,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "created_at",                                 +
+             "default": "CURRENT_TIMESTAMP",                       +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 26,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "updated_at",                                 +
+             "default": "CURRENT_TIMESTAMP",                       +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 27,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gu_key",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 28,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dong_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 29,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 30,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_key",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 31,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "adm_emd": [                                                  +
+         {                                                         +
+             "name": "emd_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "geom",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rep_pt",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "adm_sgg": [                                                  +
+         {                                                         +
+             "name": "sig_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "geom",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rep_pt",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "aptinfo": [                                                  +
+         {                                                         +
+             "name": "apt_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sn",                                         +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "apt_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_clsf",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_stdg_addr",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_rdn_addr",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "ctpv_addr",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sgg_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 8,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "emd_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 9,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "daddr",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 10,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rdn_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 11,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "road_daddr",                                 +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 12,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "telno",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 13,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "fxno",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 14,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_cmpx",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 15,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_atch_file",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 16,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "hh_type",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 17,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mng_mthd",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 18,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "road_type",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 19,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mn_mthd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 20,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "whol_dong_cnt",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 21,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "tnohsh",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 22,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bldr",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 23,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dvlr",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 24,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "use_aprv_ymd",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 25,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gfa",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 26,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rsdt_xuar",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 27,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "mnco_levy_area",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 28,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts60",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 29,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts85",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 30,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts135",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 31,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts136",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 32,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "hmpg",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 33,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "reg_ymd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 34,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mdfcn_ymd",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 35,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "epis_mng_no",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 36,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "eps_mng_form",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 37,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "hh_elct_ctrt_mthd",                          +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 38,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "clng_mng_form",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 39,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "bdar",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 40,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "prk_cntom",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 41,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "se_cd",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 42,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_aprv_day",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 43,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "use_yn",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 44,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mnco_uld_yn",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 45,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lng",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 46,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lat",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 47,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_apld_day",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 48,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gu_key",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 49,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dong_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 50,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 51,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_key",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 52,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "raw",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 53,                                       +
+             "data_type": "jsonb",                                 +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "created_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 54,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "updated_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 55,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "adm_sido": [                                                 +
+         {                                                         +
+             "name": "gid",                                        +
+             "default": "nextval('adm_sido_gid_seq'::regclass)",   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sid_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sid_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "geom",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "centroid",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "adm_emd_raw": [                                              +
+         {                                                         +
+             "name": "gid",                                        +
+             "default": "nextval('adm_emd_raw_gid_seq'::regclass)",+
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "emd_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "geom",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "adm_sgg_raw": [                                              +
+         {                                                         +
+             "name": "gid",                                        +
+             "default": "nextval('adm_sgg_raw_gid_seq'::regclass)",+
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sig_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "geom",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "USER-DEFINED",                          +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "aptinfo_ext_v": [                                            +
+         {                                                         +
+             "name": "apt_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_addr_nospace",                           +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "v_apt_markers": [                                            +
+         {                                                         +
+             "name": "id",                                         +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lat",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "double precision",                      +
+             "num_scale": null,                                    +
+             "num_precision": 53                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lng",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "double precision",                      +
+             "num_scale": null,                                    +
+             "num_precision": 53                                   +
+         },                                                        +
+         {                                                         +
+             "name": "gu",                                         +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dong",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "addr_road",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "addr_jibun",                                 +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 8,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "alembic_version": [                                          +
+         {                                                         +
+             "name": "version_num",                                +
+             "default": null,                                      +
+             "char_len": 32,                                       +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "aptinfo_summary": [                                          +
+         {                                                         +
+             "name": "apt_cd",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sn",                                         +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "apt_nm",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_clsf",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_stdg_addr",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_rdn_addr",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "ctpv_addr",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sgg_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 8,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "emd_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 9,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "daddr",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 10,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rdn_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 11,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "road_daddr",                                 +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 12,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "telno",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 13,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "fxno",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 14,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_cmpx",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 15,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "apt_atch_file",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 16,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "hh_type",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 17,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mng_mthd",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 18,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "road_type",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 19,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mn_mthd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 20,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "whol_dong_cnt",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 21,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "tnohsh",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 22,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "bldr",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 23,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dvlr",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 24,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "use_aprv_ymd",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 25,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gfa",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 26,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rsdt_xuar",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 27,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "mnco_levy_area",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 28,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts60",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 29,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts85",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 30,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts135",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 31,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "xuar_hh_stts136",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 32,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "hmpg",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 33,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "reg_ymd",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 34,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mdfcn_ymd",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 35,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "epis_mng_no",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 36,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "eps_mng_form",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 37,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "hh_elct_ctrt_mthd",                          +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 38,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "clng_mng_form",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 39,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "bdar",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 40,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 2,                                       +
+             "num_precision": 14                                   +
+         },                                                        +
+         {                                                         +
+             "name": "prk_cntom",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 41,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "se_cd",                                      +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 42,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_aprv_day",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 43,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "use_yn",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 44,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "mnco_uld_yn",                                +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 45,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lng",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 46,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lat",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 47,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": 7,                                       +
+             "num_precision": 10                                   +
+         },                                                        +
+         {                                                         +
+             "name": "cmpx_apld_day",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 48,                                       +
+             "data_type": "date",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "gu_key",                                     +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 49,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "dong_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 50,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "name_key",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 51,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_key",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 52,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "raw",                                        +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 53,                                       +
+             "data_type": "jsonb",                                 +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "created_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 54,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "updated_at",                                 +
+             "default": "now()",                                   +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 55,                                       +
+             "data_type": "timestamp with time zone",              +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_addr",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 56,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "lot_main",                                   +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 57,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lot_sub",                                    +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 58,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "lot_union",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 59,                                       +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_3m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 60,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_6m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 61,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_12m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 62,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_3m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 63,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_6m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 64,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_12m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 65,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_1w",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 66,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_1m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 67,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_24m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 68,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale84_med_36m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 69,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_1w",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 70,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_1m",                              +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 71,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_24m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 72,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "rent84_med_36m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 73,                                       +
+             "data_type": "numeric",                               +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_1w",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 74,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_1m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 75,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_3m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 76,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_6m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 77,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_12m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 78,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_24m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 79,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "sale_tx_cnt_36m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 80,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_1w",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 81,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_1m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 82,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_3m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 83,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_6m",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 84,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_12m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 85,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_24m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 86,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "rent_tx_cnt_36m",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 87,                                       +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         }                                                         +
+     ],                                                            +
+     "spatial_ref_sys": [                                          +
+         {                                                         +
+             "name": "srid",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "NO",                                     +
+             "position": 1,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "auth_name",                                  +
+             "default": null,                                      +
+             "char_len": 256,                                      +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "auth_srid",                                  +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "srtext",                                     +
+             "default": null,                                      +
+             "char_len": 2048,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "proj4text",                                  +
+             "default": null,                                      +
+             "char_len": 2048,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "geometry_columns": [                                         +
+         {                                                         +
+             "name": "f_table_catalog",                            +
+             "default": null,                                      +
+             "char_len": 256,                                      +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_table_schema",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_table_name",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_geometry_column",                          +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "coord_dimension",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "srid",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "type",                                       +
+             "default": null,                                      +
+             "char_len": 30,                                       +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "character varying",                     +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ],                                                            +
+     "geography_columns": [                                        +
+         {                                                         +
+             "name": "f_table_catalog",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 1,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_table_schema",                             +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 2,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_table_name",                               +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 3,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "f_geography_column",                         +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 4,                                        +
+             "data_type": "name",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         },                                                        +
+         {                                                         +
+             "name": "coord_dimension",                            +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 5,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "srid",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 6,                                        +
+             "data_type": "integer",                               +
+             "num_scale": 0,                                       +
+             "num_precision": 32                                   +
+         },                                                        +
+         {                                                         +
+             "name": "type",                                       +
+             "default": null,                                      +
+             "char_len": null,                                     +
+             "nullable": "YES",                                    +
+             "position": 7,                                        +
+             "data_type": "text",                                  +
+             "num_scale": null,                                    +
+             "num_precision": null                                 +
+         }                                                         +
+     ]                                                             +
+ }
+(1 row)
+

@@ -1,0 +1,15 @@
+rent_mv|6850559
+rent|6644096
+sale_mv|2838592
+sale|2716578
+spatial_ref_sys|8500
+aptinfo|2845
+aptinfo_summary|2845
+adm_emd_raw|712
+adm_emd|712
+adm_sgg_raw|52
+adm_sgg|52
+alembic_version|1
+adm_sido|0
+layer|0
+topology|0

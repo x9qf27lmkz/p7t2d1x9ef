@@ -1,0 +1,5 @@
+rent|6644096
+sale|2716578
+aptinfo|2845
+aptinfo_ext|2845
+alembic_version|1

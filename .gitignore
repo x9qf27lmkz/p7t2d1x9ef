@@ -1,0 +1,82 @@
+# ===== HomeSweetHome .gitignore (v9 reset) =====
+
+# Env / Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.crt
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+*.log
+*.pid
+*.tmp
+*.bak
+
+# Alembic (track versions/, ignore caches)
+# (우리는 migrations 추적 필요: backend/alembic/versions/** 는 커밋)
+backend/.pytest_cache/
+backend/__pycache__/
+
+# Node / Expo
+node_modules/
+.expo/
+.expo-shared/
+*.map
+*.bundle
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / Dist
+dist/
+build/
+frontend/dist/
+frontend/build/
+frontend/web-build/
+
+# Data / GIS / Dumps (대용량, 자동생성)
+backend/data/
+data/
+logs/
+tmp/
+*.db
+*.sqlite*
+*.dump
+#*.sql
+*.sql.gz
+#*.csv
+*.jsonl
+*.parquet
+*.geojson
+*.topojson
+*.mbtiles
+*.shp
+*.prj
+*.dbf
+*.gdb
+
+# DB Audit snapshots (루트 README만 남기기)
+#db_audit/
+#!db_audit/README.md
+
+# IDE / OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Archives (실험/구버전)
+archive/
+archive/_maybe_unused/
+archive/old/

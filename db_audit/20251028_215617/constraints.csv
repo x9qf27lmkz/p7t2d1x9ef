@@ -1,0 +1,11 @@
+schema,table,constraint,type,definition
+public,adm_emd_raw,adm_emd_raw_pkey,PRIMARY KEY,PRIMARY KEY (gid)
+public,adm_sgg_raw,adm_sgg_raw_pkey,PRIMARY KEY,PRIMARY KEY (gid)
+public,adm_sido,adm_sido_pkey,PRIMARY KEY,PRIMARY KEY (gid)
+public,alembic_version,alembic_version_pkc,PRIMARY KEY,PRIMARY KEY (version_num)
+public,aptinfo,aptinfo_pkey,PRIMARY KEY,PRIMARY KEY (apt_cd)
+public,aptinfo_summary,aptinfo_ext_pkey,PRIMARY KEY,PRIMARY KEY (apt_cd)
+public,rent,rent_pkey,PRIMARY KEY,PRIMARY KEY (id)
+public,sale,sale_pkey,PRIMARY KEY,PRIMARY KEY (id)
+public,spatial_ref_sys,spatial_ref_sys_pkey,PRIMARY KEY,PRIMARY KEY (srid)
+public,spatial_ref_sys,spatial_ref_sys_srid_check,CHECK,CHECK (((srid > 0) AND (srid <= 998999)))

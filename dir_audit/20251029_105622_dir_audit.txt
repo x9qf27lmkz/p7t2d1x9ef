@@ -1,0 +1,78 @@
+===== HomeSweetHome DIR AUDIT (v4) =====
+Generated at: 2025-10-29 10:56:22 KST
+Project root: /home/somliboy/Desktop/homesweethome
+Output file: ./dir_audit/20251029_105622_dir_audit.txt
+Mode: LEAN
+
+== System ==
+Linux somliboy-750XGL 6.11.0-29-generic #29~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jun 26 14:16:59 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+== Git ==
+Current branch: HEAD
+Remote(s):
+origin	https://github.com/x9qf27lmkz/p7t2d1x9ef.git (fetch)
+origin	https://github.com/x9qf27lmkz/p7t2d1x9ef.git (push)
+
+-- git status --
+A  .gitignore
+A  audit.txt
+A  audit_db.sh
+A  audit_dir.sh
+A  backend/__init__.py
+A  backend/alembic.ini
+A  backend/alembic/env.py
+A  backend/alembic/script.py.mako
+A  backend/alembic/versions/0dd7de0ba45c_init_schema_clean.py
+A  backend/alembic/versions/1507e74b723e_recreate_rent_with_full_api_columns.py
+A  backend/alembic/versions/1d3f1d8b4a4d_phase2_add_year_meta.py
+A  backend/alembic/versions/4245cdb914ac_merge_all_heads_rent_aptinfo.py
+A  backend/alembic/versions/62a3c3f9492d_create_view_v_apartment_price_84.py
+A  backend/alembic/versions/77fa0931ba41_recreate_sale_with_full_api_columns_v2.py
+A  backend/alembic/versions/853b41ce4cc5_change_rent_money_fields_to_bigint.py
+A  backend/alembic/versions/8f0fa1e58d5e_phase1_create_core_tables.py
+A  backend/alembic/versions/ae514dc40527_add_sale_derived_keys_coords.py
+A  backend/alembic/versions/bbaf1bce807c_recreate_sale_with_full_api_columns.py
+A  backend/alembic/versions/beafedb8bed4_create_aptinfo_table.py
+A  backend/alembic/versions/c51d72f0729a_widen_sale_area_numerics.py
+A  backend/app/__init__.py
+A  backend/app/api/__init__.py
+A  backend/app/api/bounds_db.py
+A  backend/app/api/geo_summary.py
+A  backend/app/api/markers.py
+A  backend/app/api/summary.py
+A  backend/app/db/__init__.py
+A  backend/app/db/db_connection.py
+A  backend/app/db/orm_registry.py
+A  backend/app/main.py
+A  backend/app/models/__init__.py
+A  backend/app/models/aptinfo.py
+A  backend/app/models/rent.py
+A  backend/app/models/sale.py
+A  backend/app/routers/__init__.py
+A  backend/app/routers/vworld_proxy.py
+A  backend/app/schemas/__init__.py
+A  backend/app/utils/__init__.py
+A  backend/app/utils/normalize.py
+A  backend/app/utils/seoul_api.py
+A  backend/scripts/__init__.py
+A  backend/scripts/etl_seed_aptinfo.py
+A  backend/scripts/etl_seed_rent.py
+A  backend/scripts/etl_seed_sale.py
+A  backend/scripts/fetch_bounds_from_proxy.py
+A  backend/scripts/vworld_addr_etl.py
+A  frontend/App.tsx
+A  frontend/app.json
+A  frontend/app/api/vworld.ts
+A  frontend/app/map/index.tsx
+A  frontend/assets/adaptive-icon.png
+A  frontend/assets/favicon.png
+A  frontend/assets/icon.png
+A  frontend/assets/splash-icon.png
+A  frontend/index.ts
+A  frontend/package-lock.json
+A  frontend/package.json
+A  frontend/tsconfig.json
+A  requirements.txt
+?? dir_audit/
+
+-- recent commits --
