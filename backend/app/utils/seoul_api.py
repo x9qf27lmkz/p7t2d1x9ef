@@ -1,10 +1,14 @@
-"""Minimal wrapper around the Seoul open data API with robust retries + start_page."""
+"""Seoul OpenAPI 최소 래퍼
+- service 문자열에 쿼리스트링 허용 (예: "tbLnOpendataRtmsV?CTRT_DAY=20251017")
+- URL은 .../{TYPE}/{SERVICE}/{START}/{END}?qs 형태로 안전하게 조립
+- 5xx/네트워크 오류 재시도 + ERROR-301(TYPE 문제) 시 json/JSON 자동 폴백
+"""
 from __future__ import annotations
 
 import math
 import os
 import time
-from typing import Any, Dict, Generator, Iterable, List, Optional
+from typing import Any, Dict, Generator, Iterable, List, Optional, Tuple
 
 import requests
 
@@ -14,18 +18,40 @@ _BASE_URL = "http://openapi.seoul.go.kr:8088"
 
 
 class SeoulApiError(RuntimeError):
-    """Raised when the Seoul open API returns an unexpected or permanent error."""
+    """비정상(영구) 오류."""
 
 
 class SeoulApiTransient(RuntimeError):
-    """Raised for transient conditions (timeouts, 5xx, temporary bad payloads)."""
+    """일시적 오류(재시도 대상)."""
+
+
+# ---------------- utilities ----------------
+def _split_service_and_qs(service: str) -> Tuple[str, str]:
+    """
+    "ServiceName?A=1&B=2" -> ("ServiceName", "A=1&B=2")
+    """
+    if "?" in service:
+        svc, qs = service.split("?", 1)
+        return svc.strip().rstrip("/"), qs.strip().lstrip("?")
+    return service.strip().rstrip("/"), ""
+
+
+def _compose_url(api_key: str, service: str, start: int, end: int, *, type_token: str = "json") -> str:
+    """
+    service 가 쿼리스트링을 포함하든 말든 올바르게 조립.
+    예) service="tbLnOpendataRtmsV?CTRT_DAY=20251017"
+        -> ".../{type_token}/tbLnOpendataRtmsV/1/1000?CTRT_DAY=20251017"
+    """
+    svc, qs = _split_service_and_qs(service)
+    base = f"{_BASE_URL}/{api_key}/{type_token}/{svc}/{start}/{end}"
+    return f"{base}?{qs}" if qs else base
 
 
 def _resolve_api_key() -> str:
-    try:
-        return os.environ["SEOUL_API_KEY"]
-    except KeyError as exc:  # pragma: no cover
-        raise SeoulApiError("SEOUL_API_KEY is not configured") from exc
+    key = os.environ.get("SEOUL_API_KEY")
+    if not key:
+        raise SeoulApiError("SEOUL_API_KEY is not configured")
+    return key
 
 
 def _looks_like_server_error(text: str) -> bool:
@@ -39,7 +65,7 @@ def _looks_like_server_error(text: str) -> bool:
 
 
 def _json(response: requests.Response) -> Dict[str, Any]:
-    """Strict JSON load with classification of transient server-side responses."""
+    """HTTP 에러와 비JSON 응답을 분류."""
     try:
         response.raise_for_status()
     except requests.HTTPError as exc:
@@ -52,23 +78,43 @@ def _json(response: requests.Response) -> Dict[str, Any]:
     except ValueError as exc:
         text = (response.text or "")
         if _looks_like_server_error(text):
-            # non-JSON but clearly a server-side transient error payload
+            # 서버측 임시 오류로 판정(예: WAS 에러 HTML/XML)
             raise SeoulApiTransient("Server returned non-JSON error payload") from exc
+        # ex) ERROR-300/301 같은 XML 메시지 그대로 노출
         raise SeoulApiError(f"Invalid JSON payload: {text[:200]}") from exc
 
 
 def _get_json_with_retry(url: str, *, timeout: float = 60, max_retries: int = 8) -> Dict[str, Any]:
-    """Fetch URL and return parsed JSON with exponential backoff on transient errors."""
+    """
+    URL에서 JSON을 받아 파싱.
+    - 5xx/네트워크/임시 오류는 지수 백오프로 재시도
+    - ERROR-301(TYPE) 오류일 때는 json/JSON 스위치해서 1회 폴백 시도
+    """
     base_sleep = 1.0
+    tried_type_flip = False
+
     for attempt in range(1, max_retries + 1):
         try:
             resp = requests.get(url, timeout=timeout)
             return _json(resp)
-        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError, SeoulApiTransient) as e:
+
+        except SeoulApiError as e:
+            # ERROR-301(TYPE) → json/JSON 토글해서 한 번만 재시도
+            msg = str(e)
+            if ("ERROR-301" in msg) and (("/json/" in url) or ("/JSON/" in url)) and not tried_type_flip:
+                tried_type_flip = True
+                flipped = url.replace("/json/", "/JSON/") if "/json/" in url else url.replace("/JSON/", "/json/")
+                print(f"↻ TYPE fallback due to ERROR-301. Retrying with: {flipped}")
+                url = flipped
+                continue
+            raise
+
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError, SeoulApiTransient):
             sleep = min(60.0, base_sleep * (2 ** (attempt - 1)))
             print(f"⚠️  SEOUL API transient error on attempt {attempt}/{max_retries}. Sleeping {sleep:.1f}s. URL={url}")
             time.sleep(sleep)
             continue
+
     raise SeoulApiError(f"❌ Exhausted retries fetching {url}")
 
 
@@ -90,7 +136,7 @@ def _find_row(obj: Any) -> Optional[List[Dict[str, Any]]]:
 
 
 def list_total_count(payload: Any) -> int:
-    """Extract the ``list_total_count`` value from the Seoul payload."""
+    """Seoul payload 내부의 list_total_count 추출."""
     if isinstance(payload, dict):
         for key, value in payload.items():
             if key.lower() == "list_total_count":
@@ -111,9 +157,9 @@ def list_total_count(payload: Any) -> int:
 
 
 def probe_service(api_key: str, candidates: Iterable[str]) -> str:
-    """Return the first working service name from ``candidates``."""
+    """후보 중 정상 동작하는 서비스명을 반환."""
     for service in candidates:
-        url = f"{_BASE_URL}/{api_key}/json/{service}/1/1"
+        url = _compose_url(api_key, service, 1, 1, type_token="json")
         try:
             payload = _get_json_with_retry(url, timeout=60, max_retries=5)
         except SeoulApiError:
@@ -123,33 +169,34 @@ def probe_service(api_key: str, candidates: Iterable[str]) -> str:
     raise SeoulApiError(f"Service not detected among {list(candidates)}")
 
 
+# ---------------- paging ----------------
 def fetch_pages(
     api_key: Optional[str],
     service: str,
     *,
     page_size: int = _DEFAULT_PAGE_SIZE,
     throttle_seconds: float = _DEFAULT_THROTTLE_SECONDS,
-    start_page: int = 1,   # ← 추가: 시작 페이지(1-base)
+    start_page: int = 1,   # 1-based
 ) -> Generator[List[Dict[str, Any]], None, None]:
-    """Yield batches of rows for the given service (robust against transient API failures).
-
-    start_page: 1-base 페이지 번호. 이 페이지부터 요청/반환한다.
+    """
+    서비스 배치 페이지를 순회하며 row 리스트를 yield.
+    service 는 "NAME?A=1&B=2" 형식을 허용.
     """
     key = api_key or _resolve_api_key()
 
-    # 1/1 헤더 조회 (총 건수)
-    head_url = f"{_BASE_URL}/{key}/json/{service}/1/1"
+    # 1) HEAD(총건수)
+    head_url = _compose_url(key, service, 1, 1, type_token="json")
     head = _get_json_with_retry(head_url, timeout=60, max_retries=8)
     total = list_total_count(head)
     pages = max(1, math.ceil(total / page_size))
 
-    # 내부 인덱스 보정
     start_idx = max(0, int(start_page) - 1)
 
+    # 2) 페이지 루프
     for page in range(start_idx, pages):
         start = page * page_size + 1
         end = (page + 1) * page_size
-        url = f"{_BASE_URL}/{key}/json/{service}/{start}/{end}"
+        url = _compose_url(key, service, start, end, type_token="json")
         payload = _get_json_with_retry(url, timeout=60, max_retries=8)
         rows = _find_row(payload) or []
         yield list(rows)
@@ -165,7 +212,7 @@ def iter_rows(
     throttle_seconds: float = _DEFAULT_THROTTLE_SECONDS,
     start_page: int = 1,
 ) -> Generator[List[dict], None, None]:
-    """Backward compatible wrapper yielding row batches for ``service``."""
+    """과거 호환 래퍼."""
     yield from fetch_pages(
         api_key,
         service,

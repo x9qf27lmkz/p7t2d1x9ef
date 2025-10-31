@@ -10,3 +10,4 @@ orjson
 asyncpg
 pydantic-settings
 python-dotenvasyncpg==0.30.0
+python-dotenv>=0.21

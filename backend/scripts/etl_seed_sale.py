@@ -1,16 +1,21 @@
+# backend/scripts/etl_seed_sale.py
 # -*- coding: utf-8 -*-
 from __future__ import annotations
+"""
+(기존 주석 동일)
+"""
 
-"""Seed the sale table with full API columns (robust cast / dedup / resume)."""
-
-import argparse
-import logging
 import os
 import time
+import logging
 from decimal import Decimal, InvalidOperation
-from typing import Iterable, Sequence, Dict, Tuple
+from typing import Iterable, Sequence, Dict, Tuple, List
 
-from sqlalchemy import func
+# 👇 dotenv 추가
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"), override=False)
+
+from sqlalchemy import func, text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
@@ -23,19 +28,21 @@ from app.utils.normalize import (
     stable_bigint_id,
     yyyymmdd_to_date,
 )
-from app.utils.seoul_api import fetch_pages, probe_service
+from app.utils.seoul_tail_scanner import (
+    get_last_page_index,
+    find_anchor_page_reverse,
+    _fetch_page_once,
+)
 
 LOGGER = logging.getLogger(__name__)
-SERVICE_CANDIDATES = ("tbLnOpendataRtmsV", "RealEstateSales", "tbLnOpendataRltm")
+logging.basicConfig(level=logging.INFO)
 
 
-# --------- helpers ----------
 def _none_if_blank(v: object) -> str | None:
     if v is None:
         return None
     s = str(v).strip()
     return s if s != "" else None
-
 
 def _to_int(v: object) -> int | None:
     s = _none_if_blank(v)
@@ -49,7 +56,6 @@ def _to_int(v: object) -> int | None:
         except Exception:
             return None
 
-
 def _to_decimal(v: object) -> Decimal | None:
     s = _none_if_blank(v)
     if s is None:
@@ -58,7 +64,6 @@ def _to_decimal(v: object) -> Decimal | None:
         return Decimal(s)
     except (InvalidOperation, ValueError, TypeError):
         return None
-
 
 def _lot_from(row: dict) -> str | None:
     main, sub = _none_if_blank(row.get("MNO")), _none_if_blank(row.get("SNO"))
@@ -69,69 +74,45 @@ def _lot_from(row: dict) -> str | None:
         lot = f"{lot}-{sub}"
     return clean_lot_jibun(lot)
 
-
-def _coords(_: dict) -> Tuple[Decimal | None, Decimal | None]:
-    # 매매 API에는 좌표가 사실상 없음(확장 대비)
-    return None, None
-
-
 def _transform_row(row: dict) -> dict:
-    """API 원본 -> DB 스키마 1:1 + 파생값 변환"""
     raw = dict(row)
-
-    # 날짜/숫자 캐스팅
-    ctrt_day = yyyymmdd_to_date(_none_if_blank(row.get("CTRT_DAY")))
-    thing_amt = mwon_to_krw(_none_if_blank(row.get("THING_AMT")))  # 만원 → 원
-    arch_area = _to_decimal(row.get("ARCH_AREA"))
-    land_area = _to_decimal(row.get("LAND_AREA"))
-
-    lat, lng = _coords(row)
-
     return {
-        # PK
         "id": stable_bigint_id(raw),
 
-        # 원본(공식 스펙 순서)
         "rcpt_yr": _to_int(row.get("RCPT_YR")),
         "cgg_cd": _to_int(row.get("CGG_CD")),
         "cgg_nm": _none_if_blank(row.get("CGG_NM")),
         "stdg_cd": _to_int(row.get("STDG_CD")),
         "stdg_nm": _none_if_blank(row.get("STDG_NM")),
-        "lotno_se": _to_int(row.get("LOTNO_SE")),                # 빈문자 → None 처리
+        "lotno_se": _to_int(row.get("LOTNO_SE")),
         "lotno_se_nm": _none_if_blank(row.get("LOTNO_SE_NM")),
         "mno": _none_if_blank(row.get("MNO")),
         "sno": _none_if_blank(row.get("SNO")),
         "bldg_nm": _none_if_blank(row.get("BLDG_NM")),
-
-        "ctrt_day": ctrt_day,                                    # DATE
-        "thing_amt": thing_amt,                                  # BIGINT(원)
-        "arch_area": arch_area,                                  # NUMERIC
-        "land_area": land_area,                                  # NUMERIC
-        "flr": _none_if_blank(row.get("FLR")),                   # 다양한 표기 → TEXT로 유지
+        "ctrt_day": yyyymmdd_to_date(_none_if_blank(row.get("CTRT_DAY"))),
+        "thing_amt": mwon_to_krw(_none_if_blank(row.get("THING_AMT"))),
+        "arch_area": _to_decimal(row.get("ARCH_AREA")),
+        "land_area": _to_decimal(row.get("LAND_AREA")),
+        "flr": _none_if_blank(row.get("FLR")),
         "rght_se": _none_if_blank(row.get("RGHT_SE")),
-        "rtrcn_day": _none_if_blank(row.get("RTRCN_DAY")),       # 취소일: 원문 그대로 텍스트
+        "rtrcn_day": _none_if_blank(row.get("RTRCN_DAY")),
         "arch_yr": _to_int(row.get("ARCH_YR")),
         "bldg_usg": _none_if_blank(row.get("BLDG_USG")),
         "dclr_se": _none_if_blank(row.get("DCLR_SE")),
         "opbiz_restagnt_sgg_nm": _none_if_blank(row.get("OPBIZ_RESTAGNT_SGG_NM")),
 
-        # 파생키/좌표
-        "lat": lat,
-        "lng": lng,
-
-        # 탐색/조인 키
         "gu_key": norm_text(row.get("CGG_NM")),
         "dong_key": norm_text(row.get("STDG_NM")),
         "name_key": norm_text(row.get("BLDG_NM")),
         "lot_key": _lot_from(row),
+        "lat": None,
+        "lng": None,
 
-        # 원본 JSON
         "raw": raw,
     }
 
-
-def _iter_chunks(it: Iterable[dict], n: int) -> Iterable[list[dict]]:
-    buf: list[dict] = []
+def _iter_chunks(it: Iterable[dict], n: int) -> Iterable[List[dict]]:
+    buf: List[dict] = []
     for x in it:
         buf.append(x)
         if len(buf) >= n:
@@ -140,31 +121,26 @@ def _iter_chunks(it: Iterable[dict], n: int) -> Iterable[list[dict]]:
     if buf:
         yield buf
 
-
-def _dedup_transformed(rows: Iterable[dict]) -> list[dict]:
-    by_id: Dict[int, dict] = {}
-    for r in rows:
-        v = _transform_row(r)
-        by_id[v["id"]] = v
-    return list(by_id.values())
-
-
-def _upsert_rows(session: Session, rows: Sequence[dict], chunk_size: int) -> None:
+def _upsert_rows(session: Session, rows: Sequence[dict], *, chunk_size: int) -> None:
     if not rows:
         return
+
     for part in _iter_chunks(rows, chunk_size):
-        orig_len = len(part)
-        part = _dedup_transformed(part)
-        if not part:
+        transformed = [_transform_row(r) for r in part]
+
+        dedup_by_id: Dict[int, dict] = {}
+        for t in transformed:
+            dedup_by_id[t["id"]] = t
+        payload = list(dedup_by_id.values())
+        if not payload:
             continue
 
-        stmt = insert(Sale).values(part)
+        stmt = insert(Sale).values(payload)
 
-        # created_at은 최초값 유지, updated_at은 now() 로만 갱신
         update_map = {
-            c.name: getattr(stmt.excluded, c.name)
-            for c in Sale.__table__.columns
-            if c.name not in ("id", "created_at", "updated_at")
+            col.name: getattr(stmt.excluded, col.name)
+            for col in Sale.__table__.columns
+            if col.name not in ("id", "created_at", "updated_at")
         }
         update_map["updated_at"] = func.now()
 
@@ -175,71 +151,216 @@ def _upsert_rows(session: Session, rows: Sequence[dict], chunk_size: int) -> Non
             ),
             execution_options={"synchronize_session": False},
         )
-        LOGGER.info("sale upsert chunk=%s (deduped %s rows)", len(part), orig_len - len(part))
+
+def _get_anchor_latest_sale(session: Session) -> Tuple[int | None, str | None]:
+    row = session.execute(
+        text("SELECT id, created_at FROM sale ORDER BY created_at DESC LIMIT 1")
+    ).first()
+    if not row:
+        return (None, None)
+    anchor_id = row[0]
+    created_at_val = row[1]
+    created_at_iso = created_at_val.isoformat() if hasattr(created_at_val, "isoformat") else None
+    return anchor_id, created_at_iso
 
 
-# --------- CLI / main ----------
-def _parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Seed 'sale' table from Seoul API")
-    p.add_argument("--resume", type=int, default=None, help="시작 페이지(1-base)")
-    p.add_argument("--chunk", type=int, default=None, help="DB upsert chunk size")
-    p.add_argument("--commit-every", type=int, dest="commit_every", default=None, help="커밋 주기(배치 단위)")
-    p.add_argument("--throttle", type=float, default=None, help="API 호출 간 대기(초)")
-    p.add_argument("--service", type=str, default=None, help="서비스명 강제(tbLnOpendataRtmsV 등)")
-    p.add_argument("--api-key", type=str, default=None, help="서울 API 키 강제")
-    return p.parse_args()
+def _run_page_loop(
+    session: Session,
+    *,
+    api_key: str,
+    service: str,
+    throttle: float,
+    page_size: int,
+    start_page: int,
+    end_page: int,
+    commit_every: int,
+    upsert_chunk: int,
+) -> None:
+
+    current_page = start_page
+    batch_idx = 0
+    total_pages = end_page - start_page + 1
+
+    print(f"[sale-etl] BEGIN load {start_page}..{end_page} ({total_pages} pages)")
+
+    while current_page <= end_page:
+        start_idx = (current_page - 1) * page_size + 1
+        end_idx = current_page * page_size
+
+        print(
+            f"[sale-scan] fetch page_no={current_page} "
+            f"start={start_idx} end={end_idx} "
+            f"({current_page - start_page + 1}/{total_pages})"
+        )
+
+        rows = _fetch_page_once(
+            api_key=api_key,
+            service=service,
+            page_size=page_size,
+            page_no=current_page,
+            throttle=throttle,
+            verbose=False,
+        )
+
+        if not rows:
+            print(f"[sale-scan] ⚠️ page={current_page} empty, skipping")
+            current_page += 1
+            continue
+
+        print(f"[sale-scan] ✅ fetched {len(rows)} rows, upserting into DB...")
+        _upsert_rows(session, rows, chunk_size=upsert_chunk)
+
+        batch_idx += 1
+        if batch_idx % commit_every == 0:
+            session.commit()
+            print(f"[sale-scan] 💾 committed at page={current_page}")
+
+        print(f"[sale-scan] done upsert for page={current_page}")
+        current_page += 1
+
+    session.commit()
+    print(f"✅ sale load completed. pages {start_page}..{end_page}")
 
 
-def run(service_name: str | None = None, *, api_key: str | None = None) -> None:
-    args = _parse_args()
+def main() -> None:
+    logging.basicConfig(level=logging.INFO)
 
-    key = (
-        args.api_key
-        or api_key
-        or os.getenv("SEOUL_API_KEY_SALE")
+    api_key = (
+        os.getenv("SEOUL_API_KEY_SALE")
         or os.getenv("SEOUL_API_KEY")
     )
-    if not key:
-        raise RuntimeError("SEOUL_API_KEY not set")
+    if not api_key:
+        raise RuntimeError("SEOUL_API_KEY_SALE / SEOUL_API_KEY not set")
 
     service = (
-        args.service
-        or service_name
-        or os.getenv("SEOUL_SALE_SERVICE")
-        or probe_service(key, SERVICE_CANDIDATES)
+        os.getenv("SEOUL_SALE_SERVICE")
+        or "tbLnOpendataRtmsV"
     )
 
-    commit_every = args.commit_every or int(os.getenv("DB_COMMIT_EVERY", "10"))
-    throttle = args.throttle or float(os.getenv("SEOUL_API_THROTTLE", "0.02"))
-    resume_from = args.resume or int(os.getenv("SEOUL_RESUME_PAGE", os.getenv("RESUME", "1")))
-    chunk = args.chunk or int(os.getenv("DB_UPSERT_CHUNK", os.getenv("CHUNK", "1000")))
+    page_size = int(os.getenv("SEOUL_PAGE_SIZE", "1000"))
+    throttle = float(os.getenv("SEOUL_API_THROTTLE", "0.02"))
+    seek_scan_pages = int(os.getenv("SEOUL_SEEK_SCAN_PAGES", "400"))
 
-    LOGGER.info(
-        "settings -> chunk=%s, commit_every=%s, throttle=%.3f, resume_from=%s, service=%s",
-        chunk, commit_every, throttle, resume_from, service,
+    commit_every = int(os.getenv("DB_COMMIT_EVERY", "5"))
+    upsert_chunk = int(os.getenv("DB_UPSERT_CHUNK", "1000"))
+
+    mode = os.getenv("SALE_MODE", "incremental").strip().lower()
+    resume_env = (
+        os.getenv("SALE_RESUME_PAGE")
+        or os.getenv("SEOUL_RESUME_PAGE")
+        or os.getenv("RESUME")
     )
+    resume_page_override = int(resume_env) if resume_env else None
 
     with SessionLocal() as session:
-        t0 = time.time()
-        batch_count = 0
-        for page_idx, batch in enumerate(
-            fetch_pages(key, service, throttle_seconds=throttle, start_page=resume_from),
-            start=resume_from,
-        ):
-            _upsert_rows(session, batch, chunk)
-            batch_count = page_idx
+        tail_page = get_last_page_index(
+            api_key=api_key,
+            service=service,
+            page_size=page_size,
+            throttle=throttle,
+            verbose=True,
+        )
+        if tail_page == 0:
+            print("[sale-etl] API dataset empty? Nothing to do.")
+            return
 
-            if batch_count % commit_every == 0:
-                session.commit()
-                LOGGER.info("sale batch %s committed", batch_count)
+        if mode == "full":
+            start_page = 1
+            if resume_page_override is not None:
+                start_page = resume_page_override
+                print(f"[sale-etl] RESUME override: start_page={start_page}")
 
-            if batch_count % 100 == 0:
-                LOGGER.info("progress: batch %s done", batch_count)
+            total_pages = tail_page - start_page + 1
+            print("[sale-etl] page plan (FULL):")
+            print(f"       SALE_MODE          = {mode}")
+            print(f"       SALE_RESUME_PAGE   = {resume_page_override}")
+            print(f"       tail_page          = {tail_page}")
+            print(f"       anchor_page_used   = None")
+            print(f"       start_page         = {start_page}")
+            print(f"       total to pull      = {total_pages} pages")
 
-        session.commit()
-        LOGGER.info("sale completed: %s batches in %.1fs", batch_count, time.time() - t0)
+            LOGGER.info(
+                "BEGIN FULL load %s..%s (%s pages) mode=%s resume=%s",
+                start_page, tail_page, total_pages, mode, resume_page_override,
+            )
 
+            _run_page_loop(
+                session=session,
+                api_key=api_key,
+                service=service,
+                throttle=throttle,
+                page_size=page_size,
+                start_page=start_page,
+                end_page=tail_page,
+                commit_every=commit_every,
+                upsert_chunk=upsert_chunk,
+            )
+            return
+
+        # incremental
+        anchor_id, anchor_created_at = _get_anchor_latest_sale(session)
+        if anchor_id is None:
+            print("[sale-etl] sale table is empty. Treating as first incremental load.")
+        else:
+            print(f"[sale-etl] anchor row id={anchor_id} created_at={anchor_created_at}")
+
+        if resume_page_override is not None:
+            start_page = resume_page_override
+            print(f"[sale-etl] RESUME override: start_page={start_page}")
+            anchor_page_used = None
+        else:
+            if anchor_id is None:
+                anchor_page = None
+            else:
+                print(f"[sale-etl] locating anchor_page for anchor_id={anchor_id} ...")
+                anchor_page = find_anchor_page_reverse(
+                    api_key=api_key,
+                    service=service,
+                    page_size=page_size,
+                    throttle=throttle,
+                    anchor_id=anchor_id,
+                    max_scan_pages=seek_scan_pages,
+                    verbose=True,
+                )
+
+            if anchor_page is None:
+                start_page = tail_page
+                anchor_page_used = None
+                print("[sale-etl] WARNING: no anchor_page found. start_page defaults to tail_page.")
+            else:
+                start_page = anchor_page
+                anchor_page_used = anchor_page
+                print(f"[sale-etl] anchor_page={anchor_page} found. We'll re-load from that page.")
+
+        if start_page > tail_page:
+            start_page = tail_page
+
+        total_pages = tail_page - start_page + 1
+
+        print("[sale-etl] page plan (INCREMENTAL):")
+        print(f"       SALE_MODE          = {mode}")
+        print(f"       SALE_RESUME_PAGE   = {resume_page_override}")
+        print(f"       tail_page          = {tail_page}")
+        print(f"       anchor_page_used   = {anchor_page_used}")
+        print(f"       start_page         = {start_page}")
+        print(f"       total to pull      = {total_pages} pages")
+
+        LOGGER.info(
+            "BEGIN INCREMENTAL load %s..%s (%s pages) mode=%s resume=%s",
+            start_page, tail_page, total_pages, mode, resume_page_override,
+        )
+
+        _run_page_loop(
+            session=session,
+            api_key=api_key,
+            service=service,
+            throttle=throttle,
+            page_size=page_size,
+            start_page=start_page,
+            end_page=tail_page,
+            commit_every=commit_every,
+            upsert_chunk=upsert_chunk,
+        )
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    run()
+    main()

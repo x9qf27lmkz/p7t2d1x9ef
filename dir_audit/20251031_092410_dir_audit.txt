@@ -1,0 +1,413 @@
+===== HomeSweetHome DIR AUDIT (v4) =====
+Generated at: 2025-10-31 09:24:10 KST
+Project root: /home/somliboy/Desktop/homesweethome
+Output file: ./dir_audit/20251031_092410_dir_audit.txt
+Mode: LEAN
+
+== System ==
+Linux somliboy-750XGL 6.11.0-29-generic #29~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jun 26 14:16:59 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+== Git ==
+Current branch: main
+Remote(s):
+origin	https://github.com/x9qf27lmkz/p7t2d1x9ef.git (fetch)
+origin	https://github.com/x9qf27lmkz/p7t2d1x9ef.git (push)
+
+-- git status --
+M  backend/app/db/orm_registry.py
+M  backend/app/utils/normalize.py
+M  backend/app/utils/seoul_api.py
+A  backend/app/utils/seoul_tail_scanner.py
+M  backend/scripts/etl_seed_rent.py
+M  backend/scripts/etl_seed_sale.py
+A  backend/scripts/find_sale_anchor_page.py
+A  backend/scripts/scan_rent_anchor_page.py
+A  db_audit/20251029_122218/README.md
+A  db_audit/20251029_122218/columns.csv
+A  db_audit/20251029_122218/columns.json
+A  db_audit/20251029_122218/columns.md
+A  db_audit/20251029_122218/constraints.csv
+A  db_audit/20251029_122218/indexes.md
+A  db_audit/20251029_122218/row_counts.txt
+A  db_audit/20251029_122218/schema.sql
+A  db_audit/20251029_122218/schema_core.sql
+A  db_audit/20251029_122218/tables_size.md
+A  db_audit/20251029_172408/README.md
+A  db_audit/20251029_172408/columns.csv
+A  db_audit/20251029_172408/columns.json
+A  db_audit/20251029_172408/columns.md
+A  db_audit/20251029_172408/constraints.csv
+A  db_audit/20251029_172408/indexes.md
+A  db_audit/20251029_172408/row_counts.txt
+A  db_audit/20251029_172408/schema.sql
+A  db_audit/20251029_172408/schema_core.sql
+A  db_audit/20251029_172408/tables_size.md
+A  db_audit/20251030_111203/README.md
+A  db_audit/20251030_111203/columns.csv
+A  db_audit/20251030_111203/columns.json
+A  db_audit/20251030_111203/columns.md
+A  db_audit/20251030_111203/constraints.csv
+A  db_audit/20251030_111203/indexes.md
+A  db_audit/20251030_111203/row_counts.txt
+A  db_audit/20251030_111203/schema.sql
+A  db_audit/20251030_111203/schema_core.sql
+A  db_audit/20251030_111203/tables_size.md
+A  db_audit/20251030_153014/README.md
+A  db_audit/20251030_153014/columns.csv
+A  db_audit/20251030_153014/columns.json
+A  db_audit/20251030_153014/columns.md
+A  db_audit/20251030_153014/constraints.csv
+A  db_audit/20251030_153014/indexes.md
+A  db_audit/20251030_153014/row_counts.txt
+A  db_audit/20251030_153014/schema.sql
+A  db_audit/20251030_153014/schema_core.sql
+A  db_audit/20251030_153014/tables_size.md
+M  requirements.txt
+?? dir_audit/20251031_092410_dir_audit.txt
+
+-- recent commits --
+6a363c3 chore: replace audit.sh with audit_dir.sh and add dir_audit logs (v4)
+
+== Disk usage (top-level) ==
+12K	./dir_audit
+44K	./.idea
+3.0M	./db_audit
+7.2M	./.git
+106M	./.venv
+330M	./backend
+377M	./frontend
+823M	.
+
+== Directory tree (depth <= 6, excludes: .git,.venv,venv,node_modules,dist,build,.idea,.vscode,__pycache__,.expo,.gradle,.next,.pytest_cache,.sass-cache,.cache) ==
+.
+├── .gitignore
+├── audit_db.sh
+├── audit_dir.sh
+├── backend
+│   ├── .env
+│   ├── __init__.py
+│   ├── alembic
+│   │   ├── env.py
+│   │   ├── script.py.mako
+│   │   └── versions
+│   │       ├── 0dd7de0ba45c_init_schema_clean.py
+│   │       ├── 1507e74b723e_recreate_rent_with_full_api_columns.py
+│   │       ├── 1d3f1d8b4a4d_phase2_add_year_meta.py
+│   │       ├── 4245cdb914ac_merge_all_heads_rent_aptinfo.py
+│   │       ├── 62a3c3f9492d_create_view_v_apartment_price_84.py
+│   │       ├── 77fa0931ba41_recreate_sale_with_full_api_columns_v2.py
+│   │       ├── 853b41ce4cc5_change_rent_money_fields_to_bigint.py
+│   │       ├── 8f0fa1e58d5e_phase1_create_core_tables.py
+│   │       ├── ae514dc40527_add_sale_derived_keys_coords.py
+│   │       ├── bbaf1bce807c_recreate_sale_with_full_api_columns.py
+│   │       ├── beafedb8bed4_create_aptinfo_table.py
+│   │       └── c51d72f0729a_widen_sale_area_numerics.py
+│   ├── alembic.ini
+│   ├── app
+│   │   ├── __init__.py
+│   │   ├── api
+│   │   │   ├── __init__.py
+│   │   │   ├── bounds_db.py
+│   │   │   ├── geo_summary.py
+│   │   │   ├── markers.py
+│   │   │   └── summary.py
+│   │   ├── db
+│   │   │   ├── __init__.py
+│   │   │   ├── db_connection.py
+│   │   │   └── orm_registry.py
+│   │   ├── main.py
+│   │   ├── models
+│   │   │   ├── __init__.py
+│   │   │   ├── aptinfo.py
+│   │   │   ├── rent.py
+│   │   │   └── sale.py
+│   │   ├── routers
+│   │   │   ├── __init__.py
+│   │   │   └── vworld_proxy.py
+│   │   ├── schemas
+│   │   │   └── __init__.py
+│   │   └── utils
+│   │       ├── __init__.py
+│   │       ├── normalize.py
+│   │       ├── seoul_api.py
+│   │       └── seoul_tail_scanner.py
+│   ├── data
+│   │   ├── seoul_emd.geojson
+│   │   └── seoul_sgg.geojson
+│   └── scripts
+│       ├── __init__.py
+│       ├── etl_seed_aptinfo.py
+│       ├── etl_seed_rent.py
+│       ├── etl_seed_sale.py
+│       ├── fetch_bounds_from_proxy.py
+│       ├── find_sale_anchor_page.py
+│       ├── scan_rent_anchor_page.py
+│       └── vworld_addr_etl.py
+├── db_audit
+│   ├── 20251026_180823
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251027_102004
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251027_102738
+│   │   └── schema.sql
+│   ├── 20251027_102940
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251027_142801
+│   │   └── schema.sql
+│   ├── 20251027_142830
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251027_165528
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251027_235357
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251028_100812
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251028_215617
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251029_122218
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251029_172408
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   ├── 20251030_111203
+│   │   ├── README.md
+│   │   ├── columns.csv
+│   │   ├── columns.json
+│   │   ├── columns.md
+│   │   ├── constraints.csv
+│   │   ├── indexes.md
+│   │   ├── row_counts.txt
+│   │   ├── schema.sql
+│   │   ├── schema_core.sql
+│   │   └── tables_size.md
+│   └── 20251030_153014
+│       ├── README.md
+│       ├── columns.csv
+│       ├── columns.json
+│       ├── columns.md
+│       ├── constraints.csv
+│       ├── indexes.md
+│       ├── row_counts.txt
+│       ├── schema.sql
+│       ├── schema_core.sql
+│       └── tables_size.md
+├── dir_audit
+│   ├── 20251029_105622_dir_audit.txt
+│   └── 20251031_092410_dir_audit.txt
+├── frontend
+│   ├── .env
+│   ├── App.tsx
+│   ├── app
+│   │   ├── api
+│   │   │   └── vworld.ts
+│   │   └── map
+│   │       └── index.tsx
+│   ├── app.json
+│   ├── assets
+│   │   ├── adaptive-icon.png
+│   │   ├── favicon.png
+│   │   ├── icon.png
+│   │   └── splash-icon.png
+│   ├── index.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   └── tsconfig.json
+└── requirements.txt
+
+34 directories, 189 files
+
+== Largest files (top 30) ==
+11299138	./backend/data/seoul_emd.geojson
+4150724	./backend/data/seoul_sgg.geojson
+413470	./frontend/package-lock.json
+183759	./db_audit/20251030_153014/columns.json
+183759	./db_audit/20251030_111203/columns.json
+183759	./db_audit/20251029_172408/columns.json
+183759	./db_audit/20251029_122218/columns.json
+183759	./db_audit/20251028_215617/columns.json
+183759	./db_audit/20251028_100812/columns.json
+183069	./db_audit/20251027_235357/columns.json
+136469	./db_audit/20251027_165528/columns.json
+136469	./db_audit/20251027_142830/columns.json
+119389	./db_audit/20251027_102940/columns.json
+119389	./db_audit/20251027_102004/columns.json
+117437	./db_audit/20251026_180823/columns.json
+46904	./db_audit/20251030_153014/schema.sql
+46904	./db_audit/20251030_111203/schema.sql
+46904	./db_audit/20251029_172408/schema.sql
+42945	./db_audit/20251029_122218/schema.sql
+41453	./db_audit/20251028_215617/schema.sql
+41453	./db_audit/20251028_100812/schema.sql
+36555	./db_audit/20251027_235357/schema.sql
+31429	./frontend/App.tsx
+31093	./db_audit/20251027_165528/schema.sql
+31093	./db_audit/20251027_142830/schema.sql
+30311	./db_audit/20251027_102940/schema.sql
+30311	./db_audit/20251027_102004/schema.sql
+22380	./frontend/assets/icon.png
+21993	./db_audit/20251026_180823/schema.sql
+17547	./frontend/assets/splash-icon.png
+
+== Language breakdown (cloc) ==
+github.com/AlDanial/cloc v 1.98  T=2.32 s (53.1 files/s, 24539.5 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JSON                            11              5              0          22447
+SQL                             24           6558           6102          13032
+Python                          36            630            610           2856
+Markdown                        26             83              0           1583
+CSV                              7              0              0           1154
+TypeScript                       4             85             43            699
+Text                            11             13              0            544
+Bourne Shell                     2             38             31            274
+INI                              1              8              0             28
+Mako                             1              8              0             20
+-------------------------------------------------------------------------------
+SUM:                           123           7428           6786          42637
+-------------------------------------------------------------------------------
+
+== Manifest files ==
+./frontend/package.json
+./requirements.txt
+./backend/.venv/lib/python3.10/site-packages/pandas/pyproject.toml
+
+== Alembic directories ==
+./.venv/lib/python3.12/site-packages/alembic
+./backend/.venv/lib/python3.10/site-packages/alembic
+./backend/alembic
+
+== Backend entry points ==
+./.venv/lib/python3.12/site-packages/pip/_internal/cli/main.py
+./.venv/lib/python3.12/site-packages/pip/_internal/main.py
+./.venv/lib/python3.12/site-packages/uvicorn/main.py
+./.venv/lib/python3.12/site-packages/pydantic_settings/main.py
+./.venv/lib/python3.12/site-packages/pydantic/v1/main.py
+./.venv/lib/python3.12/site-packages/pydantic/main.py
+./.venv/lib/python3.12/site-packages/dotenv/main.py
+./.venv/lib/python3.12/site-packages/watchfiles/main.py
+./backend/.venv/lib/python3.10/site-packages/pip/_internal/cli/main.py
+./backend/.venv/lib/python3.10/site-packages/pip/_internal/main.py
+./backend/.venv/lib/python3.10/site-packages/uvicorn/main.py
+./backend/.venv/lib/python3.10/site-packages/pydantic_settings/main.py
+./backend/.venv/lib/python3.10/site-packages/pydantic/v1/main.py
+./backend/.venv/lib/python3.10/site-packages/pydantic/main.py
+./backend/.venv/lib/python3.10/site-packages/dotenv/main.py
+./backend/.venv/lib/python3.10/site-packages/watchfiles/main.py
+./backend/app/main.py
+
+== .env files (size only) ==
+421 bytes  ./frontend/.env
+1406 bytes  ./backend/.env
+
+== Longest code/text files (top 20) ==
+   10929  ./frontend/package-lock.json
+    2666  ./db_audit/20251030_153014/columns.json
+    2666  ./db_audit/20251030_111203/columns.json
+    2666  ./db_audit/20251029_172408/columns.json
+    2666  ./db_audit/20251029_122218/columns.json
+    2666  ./db_audit/20251028_215617/columns.json
+    2666  ./db_audit/20251028_100812/columns.json
+    2656  ./db_audit/20251027_235357/columns.json
+    2240  ./db_audit/20251027_165528/columns.json
+    2240  ./db_audit/20251027_142830/columns.json
+    1960  ./db_audit/20251027_102940/columns.json
+    1960  ./db_audit/20251027_102004/columns.json
+    1928  ./db_audit/20251026_180823/columns.json
+    1895  ./db_audit/20251030_153014/schema.sql
+    1895  ./db_audit/20251030_111203/schema.sql
+    1895  ./db_audit/20251029_172408/schema.sql
+    1740  ./db_audit/20251029_122218/schema.sql
+    1680  ./db_audit/20251028_215617/schema.sql
+    1680  ./db_audit/20251028_100812/schema.sql
+    1573  ./db_audit/20251027_235357/schema.sql
+
