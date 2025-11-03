@@ -18,7 +18,8 @@ from app.routers.vworld_proxy import router as vworld_router
 from app.api.markers import router as markers_router          # /api/markers
 from app.api.summary import router as summary_router          # /api/summary
 from app.api.geo_summary import router as geo_summary_router  # /api/geo-summary
-from app.api.bounds_db import router as bounds_db_router
+from app.api.bounds import router as bounds_router
+from app.api.aptinfo_basic import router as aptinfo_basic_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -77,7 +78,8 @@ async def health_db():
 app.include_router(markers_router)    # /api/markers
 app.include_router(summary_router)    # /api/summary
 app.include_router(geo_summary_router) # /api/geo-summary
-app.include_router(bounds_db_router)  # /api/bounds
+app.include_router(bounds_router)  # /api/bounds
+app.include_router(aptinfo_basic_router)
 
 # 외부 서비스 프록시
 app.include_router(vworld_router)
