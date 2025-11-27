@@ -80,3 +80,7 @@ desktop.ini
 archive/
 archive/_maybe_unused/
 archive/old/
+
+db_audit/
+dir_audit/
+code_to_image/
